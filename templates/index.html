@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Analysis</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial,sans-serif ;
+            background-image: url('/static/hi.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #671217;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Video Box Styles */
+        .video-box {
+            width: 90%;
+            max-width: 650px;
+            height: 450px;
+            border: 2px solid #4A90E2;
+            overflow: hidden;
+            margin: 10px auto;
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Form Styles */
+        form {
+            margin-top: 30px;
+        }
+
+        button {
+            background-color: #4A90E2;
+            color: white;
+            padding: 12px 24px;
+            font-size: 26px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #357ABD;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="margin-left: -70px;font-size: 50px;">Welcome to Skin Analysis</h1>
+    <!-- Instruction text placed between heading and video -->
+<p style="font-size: 20px; font-weight: bold; text-align: center; margin-left: -5%; margin-bottom: -2%; margin-top: -17px ;">
+  Put your face in front of camera
+</p>
+
+    <!-- Image + Camera + Right Image container -->
+<div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 30px; margin-top: 20px;">
+
+    <!-- Left image (enlarged) -->
+    <img src="{{ url_for('static', filename='left_pic.png') }}" 
+         alt="Routine Steps" 
+         style="width: 320px;filter: sepia(60%) hue-rotate(-20deg) saturate(150%); border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+
+    <!-- Camera feed box (centered with space around) -->
+    <div class="video-box" style="margin-left: 0; margin-right: 0;margin-top: -50px;">
+        <img src="/video_feed" alt="Live Camera Feed">
+    </div>
+
+    <!-- Right image (new addition) -->
+    <img src="{{ url_for('static', filename='right_pic.png') }}" 
+         alt="Skin Tips"
+         style="width: 380px; height: 560px;filter: sepia(60%) hue-rotate(-20deg) saturate(150%); border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);"
+     class="right-image">
+</div>
+
+
+    <!-- Centered Analyze Button -->
+    <form action="/predict" method="POST" style="margin-top: -30px; text-align: left; margin-left: 46%;">
+        <p style="text-align: left;font-weight: bold; display: block; width: 100%; font-size: 18px; margin-top: -60px; margin-left : -12%;">Click here to Analyze your Face skin</p>
+        <button type="submit">Analyze</button>
+    </form>
+
+</body>
+</html>
